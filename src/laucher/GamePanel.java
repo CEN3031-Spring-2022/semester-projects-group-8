@@ -1,11 +1,12 @@
 package laucher;
 
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
 import entity.Player;
+import gameBackground.backgroundManager;
 
 import java.awt.*;
 
@@ -15,25 +16,23 @@ public class GamePanel extends JPanel implements Runnable {
 	final int scale = 3; //Scales the tiles by 3x
 	public final int tileSize = originalTileSize * scale; //Actual tile size
 	
-	final int tilesPerCol = 16; //16 tiles displayed horizontally
-	final int tilesPerRow = 12; //12 tiles displayed vertically
+	public final int tilesPerCol = 16; //16 tiles displayed horizontally
+	public final int tilesPerRow = 12; //12 tiles displayed vertically
 	
-	final int screenWidth = tileSize * tilesPerCol; //48 * 16 = 768 pixels wide
-	final int screenHeight = tileSize * tilesPerRow; //48 * 12 = 576 pixels tall
+	public final int screenWidth = tileSize * tilesPerCol; //48 * 16 = 768 pixels wide
+	public final int screenHeight = tileSize * tilesPerRow; //48 * 12 = 576 pixels tall
 	
+	BufferedImage backgroundTest = null;
+	
+	backgroundManager backgroundM = new backgroundManager(this);
 	Thread thread;
 	InputHandler userInput = new InputHandler();
 	Player player = new Player(this,userInput);
-	
-	int charPosX = 100; //Sets the character's default x position to 100
-	int charPosY = 100; //Sets the character's default y position to 100
-	int charVelocity = 4; //How many pixels the character's position will update on a key press
 	
 	int framesPerSecond = 60; //The game will update and render 60 times per second
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		
 		this.addKeyListener(userInput); //Adds the InputHandler class to the GamePanel
@@ -77,15 +76,19 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
+		
 		player.update();
 	}
+	
 	
 	public void paintComponent(Graphics g) {
 		//Draws an object to the screen
 		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D)g;
+		Graphics2D g2 = (Graphics2D)g;		
 		
+		backgroundM.draw(g2);
 		player.draw(g2);
+		
 		g2.dispose(); //Frees memory used by the object
 	}
 }
