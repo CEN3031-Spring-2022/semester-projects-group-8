@@ -100,7 +100,7 @@ public class Inventory {
 			RemoveItem(sel);
 			break;
 		}
-		
+		sc.close();
 		
 	}
 	
