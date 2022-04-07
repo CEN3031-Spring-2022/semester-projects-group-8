@@ -13,7 +13,7 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 	
 	final int originalTileSize = 16; //Tiles are 16x16 pixels
-	final int scale = 3; //Scales the tiles by 3x
+	final int scale = 4; //Scales the tiles by 3x
 	public final int tileSize = originalTileSize * scale; //Actual tile size
 	
 	public final int tilesPerCol = 16; //16 tiles displayed horizontally
