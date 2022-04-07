@@ -14,7 +14,7 @@ public class backgroundManager {
 	
 	GamePanel game;
 	backgroundPanel[] background;
-	int mapTileSize [][];
+	int mapTileSize[][];
 	
 	public backgroundManager(GamePanel game)
 	{
@@ -70,7 +70,7 @@ public class backgroundManager {
 			{
 				String line = br.readLine();
 				
-				while(col == game.tilesPerCol)
+				while(col < game.tilesPerCol)
 				{
 					String numbers[] = line.split(" ");
 					
@@ -78,19 +78,20 @@ public class backgroundManager {
 					
 					mapTileSize[col][row] = num;
 					col++;
-					
-					if(col == game.tilesPerCol) {
+				}
+					if(col == game.tilesPerCol) { 
 						col = 0;
 						row++;
 					}
 				}
-			}
+			
 			br.close();
 			
 		} catch(Exception e) {
 			
 		}
 	}
+	
 	public void draw(Graphics2D g2) {
 		
 		int col = 0;
