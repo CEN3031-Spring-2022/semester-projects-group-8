@@ -26,10 +26,16 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	backgroundManager backgroundM = new backgroundManager(this);
 	Thread thread;
-	InputHandler userInput = new InputHandler();
+	InputHandler userInput = new InputHandler(this);
 	Player player = new Player(this,userInput);
 	
 	int framesPerSecond = 60; //The game will update and render 60 times per second
+	
+	public int gameState;
+	public final int PLAY = 1;
+	public final int PAUSE = 2;
+	
+	public UserInterface UI = new UserInterface(this);
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -39,6 +45,10 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setFocusable(true);
 	}
 
+	public void gameSetup() {
+		gameState = PLAY;
+	}
+	
 	public void startThread() {
 		thread = new Thread(this); //Passes GamePanel to Thread
 		thread.start();
@@ -76,8 +86,12 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-		
-		player.update();
+		if(gameState == PLAY) {
+			player.update();
+		}
+		if(gameState == PAUSE) {
+			//Game is paused
+		}
 	}
 	
 	
@@ -88,6 +102,7 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		backgroundM.draw(g2);
 		player.draw(g2);
+		UI.draw(g2);
 		
 		g2.dispose(); //Frees memory used by the object
 	}
