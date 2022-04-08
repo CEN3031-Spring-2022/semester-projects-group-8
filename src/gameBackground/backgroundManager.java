@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 
 import laucher.GamePanel;
 
-public class backgroundManager {
+public class backgroundManager extends backgroundPanel{
 	
 	GamePanel game;
 	backgroundPanel[] background;
@@ -20,7 +20,7 @@ public class backgroundManager {
 	{
 		this.game = game;
 	
-		background = new backgroundPanel[10];
+		background = new backgroundPanel[11];
 		mapTileSize = new int[game.tilesPerCol][game.tilesPerRow];
 		
 		getTileImage();
@@ -32,25 +32,37 @@ public class backgroundManager {
 		try {
 			
 			background[0] = new backgroundPanel();
-			background[0].background = ImageIO.read(getClass().getResourceAsStream("/background/leafygrasshires.png"));
+			background[0].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/leafygrasshires.png"));
 			
 			background[1] = new backgroundPanel();
-			background[1].background = ImageIO.read(getClass().getResourceAsStream("/background/tilevariant2.png"));
+			background[1].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/tilevariant2.png"));
 			
 			background[2] = new backgroundPanel();
-			background[2].background = ImageIO.read(getClass().getResourceAsStream("/background/bigrock.png"));
+			background[2].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/tilevariant.png"));
 			
 			background[3] = new backgroundPanel();
-			background[3].background = ImageIO.read(getClass().getResourceAsStream("/background/topmiddle.png"));
+			background[3].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/topmiddle.png"));
 			
 			background[4] = new backgroundPanel();
-			background[4].background = ImageIO.read(getClass().getResourceAsStream("/background/leftsideflat.png"));
+			background[4].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/leftside.png"));
 			
 			background[5] = new backgroundPanel();
-			background[5].background = ImageIO.read(getClass().getResourceAsStream("/background/rightsideflat.png"));
+			background[5].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/rightside.png"));
 			
 			background[6] = new backgroundPanel();
-			background[6].background = ImageIO.read(getClass().getResourceAsStream("/background/bottommiddle.png"));
+			background[6].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/bottommiddle.png"));
+			
+			background[7] = new backgroundPanel();
+			background[7].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/bottomrightcorner.png"));
+			
+			background[8] = new backgroundPanel();
+			background[8].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/bottomleftcorner.png"));
+			
+			background[9] = new backgroundPanel();
+			background[9].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/toprightcorner.png"));
+			
+			background[10] = new backgroundPanel();
+			background[10].backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/topleftcorner.png"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -103,7 +115,7 @@ public class backgroundManager {
 		{			
 			int tileNum = mapTileSize[col][row];
 		
-			g2.drawImage(background[tileNum].background, x, y, game.tileSize, game.tileSize, null);
+			g2.drawImage(background[tileNum].backgroundImage, x, y, game.tileSize, game.tileSize, null);
 			col++;
 			x += game.tileSize;
 			

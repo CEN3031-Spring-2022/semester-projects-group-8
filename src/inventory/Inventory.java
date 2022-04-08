@@ -31,7 +31,7 @@ public class Inventory {
 		return v.elementAt(index);
 	}
 	
-	int GetSize() {
+	public int GetSize() {
 		return v.size();
 	}
 	
