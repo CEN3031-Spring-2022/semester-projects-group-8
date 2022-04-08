@@ -18,6 +18,7 @@ public class Launcher {
 		gameWindow.setLocationRelativeTo(null);
 		gameWindow.setVisible(true);
 
+		adventurePanel.gameSetup();
 		adventurePanel.startThread();
 	}
 
