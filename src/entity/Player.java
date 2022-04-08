@@ -13,6 +13,7 @@ public class Player extends Entity {
 
 	GamePanel gp;
 	InputHandler userInput;
+	int playerCounter;
 	
 	public Player(GamePanel gp, InputHandler userInput) {
 		this.gp = gp;
@@ -49,6 +50,8 @@ public class Player extends Entity {
 	
 	public void update() {
 		//Updates player's position based on key pressed
+		if(userInput.upKey == true || userInput.downKey == true || userInput.leftKey == true || userInput.rightKey == true)
+		{
 				if(userInput.upKey == true) {
 					direction = "up";
 					y -= speed; 
@@ -65,6 +68,20 @@ public class Player extends Entity {
 					direction = "right";
 					x += speed;
 				}
+				
+				entityCounter++;
+				if(entityCounter > 10)
+				{
+					if(entityImageNum == 1)
+					{
+						entityImageNum = 2;
+					} else if(entityImageNum == 2)
+					{
+						entityImageNum = 1;
+					}
+					entityCounter = 0;
+				}
+		}
 	}
 	
 	public void draw(Graphics2D g2) {
@@ -76,16 +93,44 @@ public class Player extends Entity {
 		
 		switch(direction) {
 		case "up":
-			image = up1;
+			if(entityImageNum == 1)
+			{
+				image = up1;
+			}
+			if(entityImageNum == 2)
+			{
+				image = up2;
+			}
 			break;
 		case "down":
-			image = down1;
+			if(entityImageNum == 1)
+			{
+				image = down1;
+			}
+			if(entityImageNum == 2)
+			{
+				image = down2;
+			}
 			break;
 		case "left":
-			image = left1;
+			if(entityImageNum == 1)
+			{
+				image = left1;
+			}
+			if(entityImageNum == 2)
+			{
+				image = left2;
+			}
 			break;
 		case "right":
-			image = right1;
+			if(entityImageNum == 1)
+			{
+				image = right1;
+			}
+			if(entityImageNum == 2)
+			{
+				image = right2;
+			}
 			break;			
 		}
 		

@@ -4,6 +4,6 @@ import java.awt.image.BufferedImage;
 
 public class backgroundPanel {
 	
-	public BufferedImage background;	
+	public BufferedImage backgroundImage;	
 
 }
