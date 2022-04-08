@@ -34,19 +34,20 @@ public class GamePanel extends JPanel implements Runnable {
 	public int gameState;
 	public final int PLAY = 1;
 	public final int PAUSE = 2;
+	public final int TITLE = 0;
 	
 	public UserInterface UI = new UserInterface(this);
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setDoubleBuffered(true);
-		
+		this.setBackground(Color.black);
 		this.addKeyListener(userInput); //Adds the InputHandler class to the GamePanel
 		this.setFocusable(true);
 	}
 
 	public void gameSetup() {
-		gameState = PLAY;
+		gameState = TITLE;
 	}
 	
 	public void startThread() {
@@ -100,9 +101,14 @@ public class GamePanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;		
 		
-		backgroundM.draw(g2);
-		player.draw(g2);
-		UI.draw(g2);
+		if(gameState == TITLE) {
+			UI.draw(g2);
+		}
+		else {
+			backgroundM.draw(g2);
+			player.draw(g2);
+			UI.draw(g2);
+		}
 		
 		g2.dispose(); //Frees memory used by the object
 	}
