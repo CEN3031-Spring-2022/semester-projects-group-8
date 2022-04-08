@@ -22,6 +22,32 @@ public class InputHandler implements KeyListener{
 		
 		int pressedKey = e.getKeyCode();
 		
+		if(game.gameState == game.TITLE) {
+			if(pressedKey == KeyEvent.VK_W) {
+				game.UI.commandNum--;
+				if(game.UI.commandNum < 0) {
+					game.UI.commandNum = 2;
+				}
+			}
+			if(pressedKey == KeyEvent.VK_S) {
+				game.UI.commandNum++;
+				if(game.UI.commandNum > 2) {
+					game.UI.commandNum = 0;
+				}
+			}
+			if(pressedKey == KeyEvent.VK_ENTER) {
+				if(game.UI.commandNum == 0) {
+					game.gameState = game.PLAY;
+				}
+				if(game.UI.commandNum == 1) {
+					//TODO
+				}
+				if(game.UI.commandNum == 2) {
+					System.exit(0);
+				}
+			}
+		}
+		
 		if(pressedKey == KeyEvent.VK_W) {
 			upKey = true;
 		}
