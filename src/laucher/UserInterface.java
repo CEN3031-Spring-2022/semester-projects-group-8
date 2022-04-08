@@ -96,10 +96,10 @@ public class UserInterface {
 	public void pauseMessage() {
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 100F));
 		String text = "GAME PAUSED";
-		int x = 300;
+		int x = game.screenWidth / 5;
 		int y = game.screenHeight / 2;
 		
-		g2.drawString(text, 350, y);
+		g2.drawString(text, x, y);
 	}
 	
 }
