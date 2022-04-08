@@ -41,7 +41,7 @@ class InventoryJUnitTest {
 		testInventory.AddItem("Fire Wand", 'w', 1, 1);
 		testInventory.AddItem("Bow", 'w', 1, 0);
 		testInventory.AddItem("Demon Blade", 'w', 10, 3);
-		testInventory.AddItem("Potion", 'c', 1, 0);
+		testInventory.AddItem("Potion", 'p', 1, 0);
 		testInventory.RemoveItem(3);
 		
 		assertEquals(4, testInventory.GetSize());
