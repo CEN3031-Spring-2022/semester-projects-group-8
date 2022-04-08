@@ -63,14 +63,14 @@ public class UserInterface {
 		g2.drawString(title, x, y);
 		
 		x = 415;
-		y = 100;
+		y = 150;
 		g2.drawImage(game.player.down1, x, y, game.tileSize * 5, game.tileSize * 5, null);
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 66F));
 		
 		String titleOption = "New Game";
 		x = 480;
-		y = 500;
+		y = 600;
 		g2.drawString(titleOption, x, y);
 		if(commandNum == 0) {
 			g2.drawString("-->", x - game.tileSize, y);
@@ -78,7 +78,7 @@ public class UserInterface {
 		
 		titleOption = "Load Game";
 		x = 480;
-		y = 600;
+		y = 700;
 		g2.drawString(titleOption, x, y);
 		if(commandNum == 1) {
 			g2.drawString("-->", x - game.tileSize, y);
@@ -86,7 +86,7 @@ public class UserInterface {
 		
 		titleOption = "Quit Game";
 		x = 480;
-		y = 700;
+		y = 800;
 		g2.drawString(titleOption, x, y);
 		if(commandNum == 2) {
 			g2.drawString("-->", x - game.tileSize, y);
