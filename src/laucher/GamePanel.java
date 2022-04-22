@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import entity.Player;
 import gameBackground.backgroundManager;
+import objects.ParentObject;
 
 import java.awt.*;
 
@@ -22,14 +23,14 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int screenWidth = tileSize * tilesPerCol; //80 * 16 = 1280 pixels wide
 	public final int screenHeight = tileSize * tilesPerRow; //80 * 12 = 960 pixels tall
 	
-	
-	
 	BufferedImage backgroundTest = null;
 	
 	backgroundManager backgroundM = new backgroundManager(this);
 	Thread thread;
 	InputHandler userInput = new InputHandler(this);
-	Player player = new Player(this,userInput);
+	public Player player = new Player(this,userInput);
+	public ParentObject object[] = new ParentObject[10];
+	public ObjectHandler objectHandler = new ObjectHandler(this);
 	
 	int framesPerSecond = 60; //The game will update and render 60 times per second
 	
@@ -47,9 +48,10 @@ public class GamePanel extends JPanel implements Runnable {
 		this.addKeyListener(userInput); //Adds the InputHandler class to the GamePanel
 		this.setFocusable(true);
 	}
-
+	
 	public void gameSetup() {
 		gameState = TITLE;
+		objectHandler.setObject();
 	}
 	
 	public void startThread() {
@@ -111,6 +113,14 @@ public class GamePanel extends JPanel implements Runnable {
 			player.draw(g2);
 			UI.draw(g2);
 		}
+		if(gameState == PLAY) {
+			for(int i = 0; i < object.length; i++) {
+				if(object[i] != null) {
+					object[i].draw(g2, this);
+				}
+			}
+		}
+		
 		
 		g2.dispose(); //Frees memory used by the object
 	}
